@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form id="meuFormulario" onsubmit="return validarFormulario()">
+        Nome<br><input type="text"  placeholder="nome" name="nome" id="nome"><br><br>
+        Email<br><input type="email" placeholder="email" name="email" id="email"><br><br>
+        Telefone<br><input type="tel"   placeholder="ex" name="telefone" id="telefone" oninput="formatarTelefone()"><br><br>
+        Tipo de evento<br><select id="tipoevento" name="tipoevento">
+            <option placeholder="item1">Item 1</option>
+            <option placeholder="item2">Item 2</option>
+            <option placeholder="item3">Item 3</option>
+            <option placeholder="item4">Item 4</option>
+            <option placeholder="item5">Item 5</option>
+        </select><br><br>
+        Data<br><input type="date" name="data" id="data"><br><br>
+        Número de conv<br><input type="number" placeholder="..." name="numconv" id="numconv"><br><br>
+        Mensagem<br><input type="text"  placeholder="" name="mensagem" id="mensagem"><br><br>
+
+        <input type="submit">
+    </form>
+
+    <div id="mensagemErro" style="color: red;"></div>
+
+    <script src="validacao.js"></script>
+    
+</body>
+</html>
