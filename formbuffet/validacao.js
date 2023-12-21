@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Adiciona o manipulador de eventos ao formulário
     document.getElementById("meuFormulario").onsubmit = function() {
         return validarFormulario();
     };
@@ -15,27 +14,20 @@ function validarFormulario() {
     var mensagem = document.getElementById("mensagem").value.trim();
 
     var mensagemErro = document.getElementById("mensagemErro");
-    mensagemErro.textContent = ''; // Limpa mensagens de erro anteriores
+    mensagemErro.textContent = ''; 
 
-    // Verifica se os campos estão vazios
     if (!nome || !email || !telefone || !tipoEvento || !data || !numConv || !mensagem) {
-        mensagemErro.textContent = "Por favor, preencha todos os campos obrigatórios.";
-        return false; // Impede o envio do formulário
+        mensagemErro.textContent = "Por favor, preencha todos os campos.";
+        return false; 
     }
 
-    // Validação do email
     if (!email.match(/^[^@]+@[^@]+\.(com|br)$/)) {
         mensagemErro.textContent = "Por favor, insira um endereço de e-mail válido.";
         return false;
     }
 
-    // Validação do telefone
-    if (!telefone.match(/^\(\d{2}\) 9 \d{4}-\d{4}$/)) {
-        mensagemErro.textContent = "Por favor, insira um número de telefone no formato (XX) 9 XXXX-XXXX.";
-        return false;
-    }
-
-    return true;
+    enviarWhatsApp();
+    return false;
 }
 
 function formatarTelefone() {
@@ -52,4 +44,20 @@ function formatarTelefone() {
     }
 
     document.getElementById("telefone").value = telefone;
+}
+
+function enviarWhatsApp() {
+    
+    var nome = document.getElementById("nome").value;
+    var email = document.getElementById("email").value;
+    var telefone = document.getElementById("telefone").value;
+    var tipoEvento = document.getElementById("tipoevento").value;
+    var dataEvento = document.getElementById("data").value;
+    var numConvidados = document.getElementById("numconv").value;
+    var mensagem = document.getElementById("mensagem").value;
+
+    var mensagemzap = `\nNome: ${nome} \n Email: ${email} \n Telefone: ${telefone} \n Tipo do Evento: ${tipoEvento} \n Data do Evento: ${dataEvento} \n Número de Convidados: ${numConvidados} \n Mensagem: ${mensagem}`;
+
+    var urlWhatsApp = `https://wa.me/5571996920336?text=${encodeURIComponent("Olá! gostaria de fazer um orçamento para o seguinte evento:" + mensagemzap)}`;
+    window.open(urlWhatsApp);
 }
